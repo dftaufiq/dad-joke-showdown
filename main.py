@@ -17,6 +17,8 @@ from pathlib import Path
 
 JOKE = "I told the kids the dishwasher is the most honest appliance in the house. It always comes clean."
 
+MAX_JOKE_CHARS = 200  # grader gate: the joke must be 1-200 characters
+
 
 def destination_dir() -> Path:
     return Path(os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output")
@@ -24,7 +26,7 @@ def destination_dir() -> Path:
 
 def main() -> int:
     text = JOKE
-    assert 1 <= len(text) <= 200, "joke must be 1-200 characters"
+    assert 1 <= len(text) <= MAX_JOKE_CHARS, "joke must be 1-200 characters"
     assert text.strip(), "joke must not be only whitespace"
     out = destination_dir()
     out.mkdir(parents=True, exist_ok=True)
